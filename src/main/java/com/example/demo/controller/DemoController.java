@@ -2,12 +2,13 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.CountryDTO;
 import com.example.demo.service.CountryService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class DemoController {
 
-    CountryService countryService;
+    private final CountryService countryService;
 
     DemoController(CountryService countryService){
         this.countryService = countryService;
@@ -29,8 +30,12 @@ public class DemoController {
     }
 
     @PostMapping(value = "/addCountry")
-    public String addCountry(@RequestBody CountryDTO countryDTO){
+    public ResponseEntity<String> addCountry(@RequestBody CountryDTO countryDTO){
        return countryService.addCountry(countryDTO);
     }
 
+    @GetMapping(value = "/get/{id}")
+    public ResponseEntity<CountryDTO> getById(@PathVariable Long id){
+        return countryService.getById(id);
+    }
 }

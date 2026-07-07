@@ -1,9 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +11,8 @@ import lombok.Setter;
 public class Country {
 
     @Id
-    @GeneratedValue
-    private int countryId;
+    @GeneratedValue(strategy = GenerationType.AUTO) // ID should be auto generated and incremental
+    private Long countryId;
     private String countryName;
     private String cityName;
 
