@@ -54,11 +54,11 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- Explicitly required in newer version of spring boot-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-h2console</artifactId>
-        </dependency>
+<!--        &lt;!&ndash; Explicitly required in newer version of spring boot&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-h2console</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>

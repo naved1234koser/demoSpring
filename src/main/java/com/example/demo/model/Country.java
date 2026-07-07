@@ -11,7 +11,7 @@ import lombok.Setter;
 public class Country {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // ID should be auto generated and incremental
+    @GeneratedValue // I will patch it when using PostGre
     private Long countryId;
     private String countryName;
     private String cityName;

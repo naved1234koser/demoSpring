@@ -18,7 +18,7 @@ public class CountryService {
         this.countryRepository = countryRepository;
     }
 
-    public ResponseEntity<String> addCountry(CountryDTO countryDTO){
+    public Country addCountry(CountryDTO countryDTO){
         countryRepository.findByCountryNameAndCityName(countryDTO.getCountryName(),countryDTO.getCityName())
                 .ifPresent( c -> {
                     throw new DuplicateResourceException("Country/City combination already exists");
@@ -29,16 +29,15 @@ public class CountryService {
         country.setCityName(countryDTO.getCityName());
 
         countryRepository.save(country);
-        String res = "Country " + countryDTO.getCountryName() + " added with city " + countryDTO.getCityName();
-        return ResponseEntity.status(HttpStatus.CREATED).body(res);
+        return country;
     }
 
-    public ResponseEntity<CountryDTO> getById(Long id){
-        Country country = countryRepository.findByCountryId(id)
+    public CountryDTO getById(Long id){
+        Country country = countryRepository.findById(id)
                 .orElseThrow( () -> new ResourceNotFoundException("Country", id));
         CountryDTO countryDTO = new CountryDTO();
         countryDTO.setCountryName(country.getCountryName());
         countryDTO.setCityName(country.getCityName());
-        return ResponseEntity.status(HttpStatus.FOUND).body(countryDTO);
+        return countryDTO;
     }
 }
