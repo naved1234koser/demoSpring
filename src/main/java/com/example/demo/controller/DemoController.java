@@ -33,17 +33,17 @@ public class DemoController {
         System.out.println("Param posted : " + param);
     }
 
-    @PostMapping(value = "/addCountry")
+    @PostMapping(value = "/countries")
     public ResponseEntity<Country> addCountry(@RequestBody CountryDTO countryDTO){
        return ResponseEntity.status(HttpStatus.CREATED).body(countryService.addCountry(countryDTO));
     }
 
-    @GetMapping(value = "/get/{id}")
+    @GetMapping(value = "/countries/{id}")
     public ResponseEntity<CountryDTO> getById(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(countryService.getById(id));
     }
 
-    @GetMapping(value = "getallcountry")
+    @GetMapping(value = "/countries")
     public ResponseEntity<List<CountryDTO>> getAllCountry(){
         return ResponseEntity.ok(countryService.getAllCountry());
     }
