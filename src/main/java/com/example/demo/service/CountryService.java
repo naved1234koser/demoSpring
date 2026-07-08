@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CountryService {
 
@@ -39,5 +41,12 @@ public class CountryService {
         countryDTO.setCountryName(country.getCountryName());
         countryDTO.setCityName(country.getCityName());
         return countryDTO;
+    }
+
+    public List<CountryDTO> getAllCountry(){
+        List<Country> countries = countryRepository.findAll();
+        return countries
+                .stream()
+                .map( c -> new CountryDTO(c.getCountryName(),c.getCityName())).toList();
     }
 }

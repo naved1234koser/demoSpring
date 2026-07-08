@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class DemoController {
 
@@ -39,5 +41,10 @@ public class DemoController {
     @GetMapping(value = "/get/{id}")
     public ResponseEntity<CountryDTO> getById(@PathVariable Long id){
         return ResponseEntity.status(HttpStatus.OK).body(countryService.getById(id));
+    }
+
+    @GetMapping(value = "getallcountry")
+    public ResponseEntity<List<CountryDTO>> getAllCountry(){
+        return ResponseEntity.ok(countryService.getAllCountry());
     }
 }
