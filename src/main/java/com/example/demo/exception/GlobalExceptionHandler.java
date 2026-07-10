@@ -1,5 +1,6 @@
 package com.example.demo.exception;
 
+import com.example.demo.dto.ValidationErrorResponse;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -62,7 +63,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneral(Exception ex){
-        log.error(ex.toString());
+        log.error("Unhandled exception caught",ex);
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ErrorResponse("INTERNAL_ERROR", "Something went wrong", 500));
