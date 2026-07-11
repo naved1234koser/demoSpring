@@ -28,8 +28,7 @@ public class CountryService {
         country.setCountryName(countryDTO.getCountryName());
         country.setCityName(countryDTO.getCityName());
 
-        countryRepository.save(country);
-        return country;
+        return countryRepository.save(country);
     }
 
     public CountryDTO getById(Long id){
