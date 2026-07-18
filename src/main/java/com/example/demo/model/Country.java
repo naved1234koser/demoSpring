@@ -3,6 +3,9 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "countries")
 @Data
@@ -18,7 +21,17 @@ public class Country {
     @Column(name = "country_name" , nullable = false, length = 100)
     private String countryName;
 
-    @Column(name = "city_name", nullable = false, length = 100)
-    private String cityName;
+    @OneToMany(
+            mappedBy = "country",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    private List<City> cities = new ArrayList<>();
+
+    public void addCity(City city){
+        cities.add(city);
+        city.setCountry(this);
+    }
 
 }

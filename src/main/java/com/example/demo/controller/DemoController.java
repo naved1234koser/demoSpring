@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.CountryDTO;
+import com.example.demo.model.City;
 import com.example.demo.model.Country;
 import com.example.demo.service.CountryService;
 import jakarta.validation.Valid;
@@ -38,8 +39,13 @@ public class DemoController {
     }
 
     @PostMapping(value = "/countries")
-    public ResponseEntity<Country> addCountry(@Valid @RequestBody CountryDTO countryDTO){
-       return ResponseEntity.status(HttpStatus.CREATED).body(countryService.addCountry(countryDTO));
+    public ResponseEntity<Country> addCountry(@RequestParam String countryName){
+       return ResponseEntity.status(HttpStatus.CREATED).body(countryService.addCountry(countryName));
+    }
+
+    @PostMapping(value = "/cities")
+    public ResponseEntity<City> addCity(@RequestParam String countryName,@RequestParam String cityName){
+        return ResponseEntity.status(HttpStatus.CREATED).body(countryService.addCity(countryName,cityName));
     }
 
     @GetMapping(value = "/countries/{id}")
