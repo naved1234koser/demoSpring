@@ -5,7 +5,6 @@ import com.example.demo.exception.DuplicateResourceException;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Country;
 import com.example.demo.repository.CountryRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -61,7 +60,7 @@ public class CountryServiceTest {
     }
 
     @Test
-    @DisplayName("addCountry: should throwDuplicateResourceException when country+city already exists")
+    @DisplayName("addCountry: should throw DuplicateResourceException when country+city already exists")
     void addCountry_whenDuplicateExists_shouldThrowDuplicateResourceException(){
         when(countryRepository.findByCountryNameAndCityName("India", "Mumbai"))
                 .thenReturn(Optional.of(savedCountry));
@@ -142,7 +141,7 @@ public class CountryServiceTest {
     }
 
     @Test
-    @DisplayName("addCountry: should call not call findById or findAll during add operation")
+    @DisplayName("addCountry: should not call findById or findAll during add operation")
     void addCountry_shouldOnlyCallExpectedRepositoryMethods(){
 
         when(countryRepository.findByCountryNameAndCityName(anyString(),anyString()))
